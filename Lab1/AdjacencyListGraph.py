@@ -22,6 +22,14 @@ class ListGraph:
         node = Node(source, weight)
         node.next = self.graph[destination]
         self.graph[destination] = node
+    
+    def is_connected(self, v1, v2):
+        temp = self.graph[v1]
+        while temp:
+            if temp.value == v2:
+                return True
+            temp = temp.next
+        return False
         
     def print_graph(self):
         for i in range(self.vertices):
