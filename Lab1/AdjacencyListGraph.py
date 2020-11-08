@@ -21,14 +21,6 @@ class Graph:
         node.next = self.graph[destination]
         self.graph[destination] = node
 
-    def get_neighbours(self, vertice):
-        neighbours = []
-        for index in range(self.size):
-            value = self.matrix[vertice][index]
-            if value > 0:
-                neighbours.append((index, value))
-        return neighbours
-
     def traverse(self):
         visited = [False] * self.vertices
         counter = 0

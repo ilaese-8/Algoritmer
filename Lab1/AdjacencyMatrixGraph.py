@@ -10,15 +10,6 @@ class Graph:
         self.matrix[vertice_one][vertice_two] = weight
         self.matrix[vertice_two][vertice_one] = weight
 
-    def get_neighbours(self, vertice):
-        neighbours = []
-        temp = self.graph[vertice]
-        while temp:
-            values = (temp.value, temp.weight)
-            neighbours.append(values)
-            temp = temp.next
-        return neighbours
-
     def traverse(self):
         visited = [False] * self.size
         counter = 0
