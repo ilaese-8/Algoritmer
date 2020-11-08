@@ -6,6 +6,7 @@ class Node:
 
 
 class Graph:
+    
     def __init__(self, vertices):
         self.vertices = vertices
         self.graph = [None] * self.vertices
@@ -14,7 +15,7 @@ class Graph:
         if weight < 1:
             return
         node = Node(destination, weight)
-        node.next = self.graph[source] 
+        node.next = self.graph[source]
         self.graph[source] = node
         node = Node(source, weight)
         node.next = self.graph[destination]
@@ -22,20 +23,25 @@ class Graph:
 
     def get_neighbours(self, vertice):
         neighbours = []
-        temp = self.graph[vertice]
-        while temp:
-            values = (temp.value, temp.weight)
-            neighbours.append(values)
-            temp = temp.next
+        for index in range(self.size):
+            value = self.matrix[vertice][index]
+            if value > 0:
+                neighbours.append((index, value))
         return neighbours
-    
-    def print_graph(self):
+
+    def traverse(self):
+        visited = [False] * self.vertices
+        counter = 0
         for i in range(self.vertices):
-            print("Vertex " + str(i) + ":", end="")
-            temp = self.graph[i]
-            while temp:
-                print(" -> {}".format(temp.value),
-                      "( weight: {}".format(temp.weight),
-                      ")", end="")
-                temp = temp.next
-            print(" \n")
+            vertice = self.graph[i]
+            while vertice != None:
+                val = vertice.value
+                if not visited[val]:
+                    print("Visiting vertice: ", val)
+                    visited[val] = True
+                    counter += 1
+                vertice = vertice.next
+        print(" \nNodes visited: ", counter)
+
+                    
+    

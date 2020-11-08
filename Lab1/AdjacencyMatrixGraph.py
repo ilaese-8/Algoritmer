@@ -12,13 +12,22 @@ class Graph:
 
     def get_neighbours(self, vertice):
         neighbours = []
-        for index in range(self.size):
-            value = self.matrix[vertice][index]
-            if value > 0:
-                neighbours.append((index, value))
+        temp = self.graph[vertice]
+        while temp:
+            values = (temp.value, temp.weight)
+            neighbours.append(values)
+            temp = temp.next
         return neighbours
-            
-    def print_graph(self):
-        print('\n'.join([''.join(['{:4}'.format(item) for item in row]) 
-      for row in self.matrix]))
 
+    def traverse(self):
+        visited = [False] * self.size
+        counter = 0
+        for i in range(self.size):
+            for j in range (self.size):
+                if not visited[j] and self.matrix[i][j] > 0:
+                    print("Traversing through: ", j)
+                    visited[j] = True
+                    counter += 1
+        print("Nodes visited: ", counter)
+
+    

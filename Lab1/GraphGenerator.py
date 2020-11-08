@@ -1,6 +1,6 @@
 import random
-#from AdjacencyListGraph import*
-from AdjacencyMatrixGraph import*
+from AdjacencyListGraph import*
+#from AdjacencyMatrixGraph import*
 
 class GraphGenerator:
 
@@ -23,7 +23,7 @@ class GraphGenerator:
         arr = []
         for i in range(size):
             arr.append(i)
-        for j in range(size-1,0,-1): 
+        for j in range(size - 1, 0, - 1): 
             k = random.randint(0, i)
             arr[j],arr[k] = arr[k],arr[j]
         return arr
@@ -38,10 +38,10 @@ class GraphGenerator:
 def main():
     
     g = GraphGenerator()
-    graphs = g.get_graphs(5, 5, 4)
+    graphs = g.get_graphs(1, 3, 1)
     for graph in graphs:
-        graph.print_graph()
-        print('\n')
+        graph.traverse()
+
         
 
 if __name__ == "__main__":
