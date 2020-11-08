@@ -1,6 +1,6 @@
 import random
-from AdjacencyListGraph import*
-#from AdjacencyMatrixGraph import*
+#from AdjacencyListGraph import*
+from AdjacencyMatrixGraph import*
 
 class GraphGenerator:
 
@@ -9,8 +9,8 @@ class GraphGenerator:
             return
         graph = Graph(size)
         for density in range(connection_density):
-            connected_graph = self.connect_graph(size, graph)
-        return connected_graph
+            graph = self.connect_graph(size, graph)
+        return graph
 
     def connect_graph(self, size, graph):
         vertice_arr = self.get_shuffled_array(size)
@@ -38,7 +38,7 @@ class GraphGenerator:
 def main():
     
     g = GraphGenerator()
-    graphs = g.get_graphs(5, 5, 2)
+    graphs = g.get_graphs(5, 5, 4)
     for graph in graphs:
         graph.print_graph()
         print('\n')
