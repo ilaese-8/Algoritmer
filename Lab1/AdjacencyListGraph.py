@@ -20,14 +20,6 @@ class Graph:
         node.next = self.graph[destination]
         self.graph[destination] = node
 
-    def is_connected(self, vertice_one, vertice_two):
-        temp = self.graph[vertice_one]
-        while temp:
-            if temp.value == vertice_two:
-                return True
-            temp = temp.next
-        return False
-
     def get_neighbours(self, vertice):
         neighbours = []
         temp = self.graph[vertice]

@@ -10,11 +10,6 @@ class Graph:
         self.matrix[vertice_one][vertice_two] = weight
         self.matrix[vertice_two][vertice_one] = weight
 
-    def is_connected(self, vertice_one, vertice_two):
-        if self.matrix[vertice_one][vertice_two] > 0:
-            return True
-        return False
-
     def get_neighbours(self, vertice):
         neighbours = []
         for index in range(self.size):
