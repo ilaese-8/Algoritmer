@@ -37,7 +37,7 @@ class Graph:
             while vertice != None:
                 val = vertice.value
                 if not visited[val]:
-                    print("Visiting vertice: ", val)
+                    print("Traversing through: ", val)
                     visited[val] = True
                     counter += 1
                 vertice = vertice.next
