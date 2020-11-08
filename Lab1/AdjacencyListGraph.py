@@ -4,9 +4,6 @@ class Node:
         self.weight = weight
         self.next = None
 
-    def get_values(self):
-        return (value, weight)
-
 
 class Graph:
     def __init__(self, vertices):
@@ -16,23 +13,29 @@ class Graph:
     def add_edge(self, source, destination, weight):
         if weight < 1:
             return
-        
         node = Node(destination, weight)
         node.next = self.graph[source] 
         self.graph[source] = node
-        
         node = Node(source, weight)
         node.next = self.graph[destination]
         self.graph[destination] = node
 
-    def is_connected(self, v1, v2):
-        temp = self.graph[v1]
+    def is_connected(self, vertice_one, vertice_two):
+        temp = self.graph[vertice_one]
         while temp:
-            if temp.value == v2:
+            if temp.value == vertice_two:
                 return True
             temp = temp.next
         return False
 
+    def get_neighbours(self, vertice):
+        neighbours = []
+        temp = self.graph[vertice]
+        while temp:
+            values = (temp.value, temp.weight)
+            neighbours.append(values)
+            temp = temp.next
+        return neighbours
     
     def print_graph(self):
         for i in range(self.vertices):
