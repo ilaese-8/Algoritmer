@@ -34,16 +34,16 @@ class Graph:
 
         # Iterate through all nodes
         for i in range(self.vertices):
-            vertice = self.graph[i]
+            vertex = self.graph[i]
 
             # Go through all connected edges
-            while vertice != None:
-                val = vertice.value
+            while vertex != None:
+                val = vertex.value
                 if not visited[val]:
                     print("Traversing through: ", val)
                     visited[val] = True
                     counter += 1
-                vertice = vertice.next
+                vertex = vertex.next
                 
         print(" \nNodes visited: ", counter)
 

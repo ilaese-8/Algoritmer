@@ -13,10 +13,10 @@ class GraphGenerator:
 
     # Adds as many non-pointed edges as the amount of vertices in the graph
     def connect_graph(self, size, graph):
-        vertice_arr = self.get_shuffled_array(size)
+        vertices = self.get_shuffled_array(size)
         for i in range(1, size):
             weight = random.randint(1, 10)
-            graph.add_edge(vertice_arr[i - 1], vertice_arr[i], weight)
+            graph.add_edge(vertices[i - 1], vertices[i], weight)
         return graph
 
     # Generates a shuffled array using the Fisher-Yates shuffling method
@@ -42,9 +42,8 @@ class GraphGenerator:
 def main():
     
     g = GraphGenerator()
-    graphs = g.get_graphs(1, 3, 1)
+    graphs = g.get_graphs(1, 7, 1)
     for graph in graphs:
-        graph.print_graph()
         graph.traverse()
 
 if __name__ == "__main__":
