@@ -2,10 +2,10 @@
 from AdjacencyMatrixGraph import*
 from GraphGenerator import*
 
-# Finds a minimal spanning tree with prims algorithm, returns the
-# tree as a graph
+# Finds a minimum spanning tree with prims algorithm and returns it
+# as a new graph
 def prim_matrix(graph):
-    MST = Graph(graph.size)
+    mst = Graph(graph.size)
     no_edges = 0 # Number of edges
     selected = [False] * graph.size
     selected[0] = True # Start at vertex 0
@@ -25,7 +25,7 @@ def prim_matrix(graph):
         MST.add_edge(x, y, minimum)
         selected[y] = True
         no_edges += 1
-    return MST
+    return mst
 
 
 def main():
@@ -34,8 +34,8 @@ def main():
     for graph in graphs:
         graph.print_graph()
         print('\n')
-        MST = prim_matrix(graph)
-        MST.print_graph()
+        mst = prim_matrix(graph)
+        mst.print_graph()
 
 if __name__ == "__main__":
     main()
