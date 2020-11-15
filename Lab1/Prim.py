@@ -16,9 +16,10 @@ def prim_matrix(graph):
         for i in range(graph.size):
             if selected[i]:
                 for j in range(graph.size):
-                    if not selected[j] and graph.matrix[i][j] > 0:
-                        if minimum > graph.matrix[i][j]:
-                            minimum = graph.matrix[i][j]
+                    edge = graph.matrix[i][j]
+                    if not selected[j] and edge > 0:
+                        if minimum > edge:
+                            minimum = edge
                             x = i
                             y = j
         MST.add_edge(x, y, minimum)
