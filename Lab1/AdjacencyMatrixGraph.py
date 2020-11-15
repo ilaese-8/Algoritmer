@@ -1,5 +1,4 @@
 import collections
-import sys
 
 class Graph:
     
@@ -36,16 +35,4 @@ class Graph:
     def print_graph(self):
         print('\n'.join([''.join(['{:4}'.format(item) for item in row]) 
       for row in self.matrix]))
-                        
-        
-        
-        
 
-
-
-
-
-
-
-
-    
