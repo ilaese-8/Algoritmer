@@ -36,28 +36,6 @@ class Graph:
     def print_graph(self):
         print('\n'.join([''.join(['{:4}'.format(item) for item in row]) 
       for row in self.matrix]))
-
-    # Find a minimal spanning tree with prims algorithm, returns the
-    # tree as a graph
-    def prim(self):
-        no_edges = 0 # Number of edges
-        selected = [False] * self.size
-        selected[0] = True
-        while (no_edges < self.size - 1): # While E < V - 1
-            minimum = sys.maxsize
-            x = 0
-            y = 0
-            for i in range(self.size):
-                if selected[i]:
-                    for j in range(self.size):
-                        if not selected[j] and self.matrix[i][j] > 0:
-                            if minimum > self.matrix[i][j]:
-                                minimum = self.matrix[i][j]
-                                x = i
-                                y = j
-            print(str(x) + "-" + str(y) + ":" + str(self.matrix[x][y]))
-            selected[y] = True
-            no_edges += 1
                         
         
         
