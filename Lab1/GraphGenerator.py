@@ -39,14 +39,14 @@ class GraphGenerator:
             graphs.append(new_graph)
         return graphs
         
-##def main():
-##    
-##    g = GraphGenerator()
-##    graphs = g.get_graphs(1, 7, 3)
-##    for graph in graphs:
-##        print(graph.is_connected())
-##        graph.print_graph()
-##        graph.prim()
-##
-##if __name__ == "__main__":
-##    main()
+def main():
+    
+    g = GraphGenerator()
+    graphs = g.get_graphs(1, 7, 3)
+    for graph in graphs:
+        print(graph.is_connected())
+        graph.print_graph()
+        graph.prim()
+
+if __name__ == "__main__":
+    main()
