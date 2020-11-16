@@ -102,23 +102,3 @@ class Graph:
                     tree[temp.value] = next_v
                 temp = temp.next
         self.printMST(tree, edge_weights)
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
