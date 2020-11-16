@@ -1,4 +1,5 @@
 import collections
+import sys
 
 class Node:
     
@@ -59,6 +60,65 @@ class Graph:
                       ")", end="")
                 temp = temp.next
             print(" \n")
-    
 
+
+    # Prints a minimum spanning tree
+    def printMST(self, tree, edge_weights): 
+        print ("Edge \tWeight")
+        for i in range(1, self.vertices): 
+            print (tree[i], "-", i, "\t", edge_weights[i])
+
+    
+    # Returns index of the vertex with lowest edge weight from
+    # unpicked vertices in MST
+    def minWeight(self, edge_weights, mstSet):
+        min = sys.maxsize
+
+        for vertex in range(self.vertices):
+            # If the edge_weight is the lowest one, and the vertex
+            # has not been picked
+            if edge_weights[vertex] < min and not mstSet[vertex]:
+                min = edge_weights[vertex]
+                min_index = vertex
+        return min_index
+    
+    def prim(self): 
+ 
+        edge_weights = [sys.maxsize] * self.vertices
+        edge_weights[0] = 0
+        mstSet = [False] * self.vertices # Picked vertices in the graph
+        tree = [None] * self.vertices # Element is v1, index is connected v2
+
+        for iteration in range(self.vertices):
+            # Get vertex with lowest edge weight
+            next_v = self.minWeight(edge_weights, mstSet)
+            # Put vertex with lowest edge weight in mstSet
+            mstSet[next_v] = True
+            
+            temp = self.adj_list[next_v]
+            while temp:
+                if temp.weight > 0 and not mstSet[temp.value] and edge_weights[temp.value] > temp.weight:
+                    edge_weights[temp.value] = temp.weight
+                    tree[temp.value] = next_v
+                temp = temp.next
+        self.printMST(tree, edge_weights)
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 

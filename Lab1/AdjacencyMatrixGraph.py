@@ -57,8 +57,7 @@ class Graph:
                 min_index = vertex
         return min_index
 
-    # Finds a minimum spanning tree with prims algorithm and returns it
-    # as a new graph
+    # Finds a minimum spanning tree with prims algorithm and prints it
     def prim(self):
 
         edge_weights = [sys.maxsize] * self.size
