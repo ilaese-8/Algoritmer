@@ -1,5 +1,6 @@
 import collections
 import sys
+from MinHeap import*
 
 class Node:
     
@@ -81,8 +82,9 @@ class Graph:
                 min = edge_weights[vertex]
                 min_index = vertex
         return min_index
+
     
-    def prim(self): 
+    def prim(self):
  
         edge_weights = [sys.maxsize] * self.vertices
         edge_weights[0] = 0
@@ -97,8 +99,39 @@ class Graph:
             
             temp = self.adj_list[next_v]
             while temp:
-                if temp.weight > 0 and not mstSet[temp.value] and edge_weights[temp.value] > temp.weight:
+                if not mstSet[temp.value] and edge_weights[temp.value] > temp.weight:
                     edge_weights[temp.value] = temp.weight
                     tree[temp.value] = next_v
                 temp = temp.next
         self.printMST(tree, edge_weights)
+
+
+    def prim_heap(self):
+
+        edge_weights = [sys.maxsize] * self.vertices
+        tree = [None] * self.vertices
+        # Load all nodes to the heap
+        heap = minHeap()
+        for vertex in range(self.vertices):
+            heap.add(vertex, sys.maxsize)
+
+        heap.pos[0] = 0
+        edge_weights[0] = 0
+        heap.decreaseWeight(0, 0) 
+
+        while heap.isEmpty() == False:
+            
+            current = heap.pop()
+            temp = self.adj_list[current[0]]
+
+            while temp:
+                if heap.inHeap(temp.value) and edge_weights[temp.value] > temp.weight:
+                    edge_weights[temp.value] = temp.weight
+                    tree[temp.value] = current[0]
+                    heap.decreaseWeight(temp.value, edge_weights[temp.value])
+                temp = temp.next
+        self.printMST(tree, edge_weights)
+
+
+
+

@@ -46,7 +46,7 @@ def main():
     for graph in graphs:
         print(graph.is_connected())
         graph.print_graph()
-        graph.prim()
+        graph.prim_heap()
 
 if __name__ == "__main__":
     main()
