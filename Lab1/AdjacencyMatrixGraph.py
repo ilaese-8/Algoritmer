@@ -1,5 +1,6 @@
 import collections
 import sys
+from MinHeap import*
 
 class Graph:
     
@@ -18,7 +19,6 @@ class Graph:
     def is_connected(self):
         fifo = collections.deque()
         visited = [False] * self.size
-
         fifo.append(0)
         count = 0
         while len(fifo) > 0:
@@ -48,7 +48,6 @@ class Graph:
         # unpicked vertices in MST
     def minWeight(self, edge_weights, mstSet):
         min = sys.maxsize
-
         for vertex in range(self.size):
             # If the edge_weight is the lowest one, and the vertex
             # has not been picked
@@ -59,19 +58,15 @@ class Graph:
 
     # Finds a minimum spanning tree with prims algorithm and prints it
     def prim(self):
-
         edge_weights = [sys.maxsize] * self.size
         edge_weights[0] = 0
         mstSet = [False] * self.size # Picked vertices in the graph
-        tree = [None] * self.size # Element is v1, index is connected v2
-            
+        tree = [None] * self.size # Element is v1, index is connected v2    
         for iteration in range(self.size):
-            
             # Get vertex with lowest edge weight
             next_v = self.minWeight(edge_weights, mstSet)
             # Put vertex with lowest edge weight in mstSet
             mstSet[next_v] = True 
-
             for i in range(self.size):
                 edge = self.matrix[next_v][i]
                 if edge > 0 and not mstSet[i] and edge_weights[i] > edge:
@@ -79,3 +74,27 @@ class Graph:
                     tree[i] = next_v
         self.printMST(tree)
 
+
+    def prim_heap(self):
+        edge_weights = [sys.maxsize] * self.size
+        tree = [None] * self.size
+        
+        # Load all vertices to the heap
+        heap = minHeap()
+        for vertex in range(self.size):
+            heap.add(vertex, sys.maxsize)
+            
+        # Initialize starter vertex
+        heap.pos[0] = 0
+        edge_weights[0] = 0
+        heap.decreaseWeight(0, 0)
+
+        while heap.isEmpty() == False:
+            current = heap.pop()
+            for i in range(self.size):
+                edge = self.matrix[current[0]][i]
+                if edge > 0 and heap.inHeap(i) and edge_weights[i] > edge:
+                    edge_weights[i] = edge
+                    tree[i] = current[0]
+                    heap.decreaseWeight(i, edge)
+        self.printMST(tree)
