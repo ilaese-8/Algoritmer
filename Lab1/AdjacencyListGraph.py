@@ -100,28 +100,28 @@ class Graph:
 
 
     def prim_heap(self):
+        
         edge_weights = [sys.maxsize] * self.vertices
         tree = [None] * self.vertices
-        
+
         # Load all vertices to the heap
         heap = minHeap()
         for vertex in range(self.vertices):
-            heap.add(vertex, sys.maxsize)
+            heap.add(vertex, 99)
             
         # Initialize starter vertex
         heap.pos[0] = 0
         edge_weights[0] = 0
-        heap.decreaseWeight(0, 0) 
+        heap.decreaseWeight(0, 0)
+        
         while heap.isEmpty() == False:
             current = heap.pop()
             temp = self.adj_list[current[0]]
-            # Go through all adjacent nodes
             while temp:
                 if heap.inHeap(temp.value) and edge_weights[temp.value] > temp.weight:
                     edge_weights[temp.value] = temp.weight
                     tree[temp.value] = current[0]
-                    heap.decreaseWeight(temp.value, edge_weights[temp.value])
+                    heap.decreaseWeight(temp.value, temp.weight)
                 temp = temp.next
         self.printMST(tree, edge_weights)
-
 

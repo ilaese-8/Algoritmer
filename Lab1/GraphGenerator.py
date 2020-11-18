@@ -1,6 +1,6 @@
 import random
-#from AdjacencyListGraph import*
-from AdjacencyMatrixGraph import*
+from AdjacencyListGraph import*
+#from AdjacencyMatrixGraph import*
 
 class GraphGenerator:
 
@@ -39,14 +39,12 @@ class GraphGenerator:
             graphs.append(new_graph)
         return graphs
         
-def main():
-    
-    g = GraphGenerator()
-    graphs = g.get_graphs(10, 5, 3)
-    for graph in graphs:
-        print(graph.is_connected())
-        graph.print_graph()
-        graph.prim_heap()
-
-if __name__ == "__main__":
-    main()
+##def main():
+##    
+##    g = GraphGenerator()
+##    graphs = g.get_graphs(1, 8, 1)
+##    for graph in graphs:
+##        graph.prim_heap()
+##
+##if __name__ == "__main__":
+##    main()

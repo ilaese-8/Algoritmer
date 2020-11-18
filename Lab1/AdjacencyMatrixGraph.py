@@ -40,7 +40,8 @@ class Graph:
     # Prints a minimum spanning tree
     def printMST(self, tree): 
         print ("Edge \tWeight")
-        for i in range(1, self.size): 
+        print(tree)
+        for i in range(1, self.size):
             print (tree[i], "-", i, "\t", self.matrix[i][ tree[i] ])
 
 
