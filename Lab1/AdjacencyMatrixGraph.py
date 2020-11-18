@@ -89,12 +89,12 @@ class Graph:
         edge_weights[0] = 0
         heap.decreaseWeight(0, 0)
 
-        while heap.isEmpty() == False:
-            current = heap.pop()
-            for i in range(self.size):
+        while heap.isEmpty() == False: # O(V)
+            current = heap.pop() # O(LOG(V))
+            for i in range(self.size): # O(V)
                 edge = self.matrix[current[0]][i]
                 if edge > 0 and heap.inHeap(i) and edge_weights[i] > edge:
                     edge_weights[i] = edge
                     tree[i] = current[0]
-                    heap.decreaseWeight(i, edge)
+                    heap.decreaseWeight(i, edge) # O(LOG(V)
         #self.printMST(tree)

@@ -38,4 +38,3 @@ class GraphGenerator:
             new_graph = self.generate_graph(size, connection_density)
             graphs.append(new_graph)
         return graphs
-

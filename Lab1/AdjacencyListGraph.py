@@ -85,13 +85,13 @@ class Graph:
         edge_weights[0] = 0
         mstSet = [False] * self.vertices # Picked vertices in the graph
         tree = [None] * self.vertices # Element is v1, index is connected v2
-        for iteration in range(self.vertices):
+        for iteration in range(self.vertices): # O(V)
             # Get vertex with lowest edge weight
-            next_v = self.minWeight(edge_weights, mstSet)
+            next_v = self.minWeight(edge_weights, mstSet) # O(V)
             # Put vertex with lowest edge weight in mstSet
             mstSet[next_v] = True
             temp = self.adj_list[next_v]
-            while temp:
+            while temp: # O(E)
                 if not mstSet[temp.value] and edge_weights[temp.value] > temp.weight:
                     edge_weights[temp.value] = temp.weight
                     tree[temp.value] = next_v
@@ -114,14 +114,14 @@ class Graph:
         edge_weights[0] = 0
         heap.decreaseWeight(0, 0)
         
-        while heap.isEmpty() == False:
-            current = heap.pop()
+        while heap.isEmpty() == False: # O(V)
+            current = heap.pop() # O(LOG(V))
             temp = self.adj_list[current[0]]
-            while temp:
+            while temp: # O(E)
                 if heap.inHeap(temp.value) and edge_weights[temp.value] > temp.weight:
                     edge_weights[temp.value] = temp.weight
                     tree[temp.value] = current[0]
-                    heap.decreaseWeight(temp.value, temp.weight)
+                    heap.decreaseWeight(temp.value, temp.weight) # O(LOG(V)
                 temp = temp.next
         #self.printMST(tree, edge_weights)
 

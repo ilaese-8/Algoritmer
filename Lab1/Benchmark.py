@@ -41,8 +41,8 @@ def main():
     b = Benchmark()
 
     amount = 100
-    vertices = 2000
-    connection_density = 2
+    vertices = 500
+    connection_density = 9
     
     graphs = g.get_graphs(amount, vertices, connection_density)
     
