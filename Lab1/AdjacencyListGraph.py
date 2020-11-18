@@ -96,7 +96,7 @@ class Graph:
                     edge_weights[temp.value] = temp.weight
                     tree[temp.value] = next_v
                 temp = temp.next
-        self.printMST(tree, edge_weights)
+        #self.printMST(tree, edge_weights)
 
 
     def prim_heap(self):
@@ -123,5 +123,5 @@ class Graph:
                     tree[temp.value] = current[0]
                     heap.decreaseWeight(temp.value, temp.weight)
                 temp = temp.next
-        self.printMST(tree, edge_weights)
+        #self.printMST(tree, edge_weights)
 

@@ -38,13 +38,4 @@ class GraphGenerator:
             new_graph = self.generate_graph(size, connection_density)
             graphs.append(new_graph)
         return graphs
-        
-##def main():
-##    
-##    g = GraphGenerator()
-##    graphs = g.get_graphs(1, 8, 1)
-##    for graph in graphs:
-##        graph.prim_heap()
-##
-##if __name__ == "__main__":
-##    main()
+

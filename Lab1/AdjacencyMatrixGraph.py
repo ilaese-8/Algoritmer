@@ -40,7 +40,6 @@ class Graph:
     # Prints a minimum spanning tree
     def printMST(self, tree): 
         print ("Edge \tWeight")
-        print(tree)
         for i in range(1, self.size):
             print (tree[i], "-", i, "\t", self.matrix[i][ tree[i] ])
 
@@ -73,7 +72,7 @@ class Graph:
                 if edge > 0 and not mstSet[i] and edge_weights[i] > edge:
                     edge_weights[i] = edge
                     tree[i] = next_v
-        self.printMST(tree)
+        #self.printMST(tree)
 
 
     def prim_heap(self):
@@ -98,4 +97,4 @@ class Graph:
                     edge_weights[i] = edge
                     tree[i] = current[0]
                     heap.decreaseWeight(i, edge)
-        self.printMST(tree)
+        #self.printMST(tree)
