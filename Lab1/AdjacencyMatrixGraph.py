@@ -6,7 +6,7 @@ class Graph:
     
     def __init__(self, size):
         self.size = size
-        self.matrix = [[0 for i in range(size)] for j in range(size)] 
+        self.matrix = [[1 for i in range(size)] for j in range(size)] 
 
     # Method for adding an undirected edge between two nodes 
     def add_edge(self, vertex_one, vertex_two, weight):

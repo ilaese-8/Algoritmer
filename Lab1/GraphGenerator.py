@@ -1,6 +1,6 @@
 import random
-from AdjacencyListGraph import*
-#from AdjacencyMatrixGraph import*
+#from AdjacencyListGraph import*
+from AdjacencyMatrixGraph import*
 
 class GraphGenerator:
 

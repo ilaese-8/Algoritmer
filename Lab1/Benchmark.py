@@ -40,9 +40,9 @@ def main():
     g = GraphGenerator()
     b = Benchmark()
 
-    amount = 100
+    amount = 2
     vertices = 500
-    connection_density = 9
+    connection_density = 10
     
     graphs = g.get_graphs(amount, vertices, connection_density)
     
