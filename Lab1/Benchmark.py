@@ -10,6 +10,7 @@ class Benchmark:
         for graph in graphs:
             graph.prim()
         after = time.perf_counter() - before
+        
         print("Time to perform prims algorithm on ", amount,
               " graphs, of ", graphSize,
               " vertices: using unsorted lists: ",
@@ -33,16 +34,15 @@ class Benchmark:
         print("Average time per algorithm: ", after/amount,
               " seconds")
 
-
         
 def main():
     
     g = GraphGenerator()
     b = Benchmark()
 
-    amount = 2
-    vertices = 500
-    connection_density = 10
+    amount = 10
+    vertices = 3000
+    connection_density = 3
     
     graphs = g.get_graphs(amount, vertices, connection_density)
     
