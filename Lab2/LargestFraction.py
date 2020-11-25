@@ -2,7 +2,7 @@ import random
 
 def largest_fraction(arr):
     pair = merge_find(arr, [arr[0], arr[1]])
-    print("aj = ", pair[1], "ai = ", pair[0], "aj/ai = ", pair[1]/pair[0])
+    print("ai = ", pair[0], "aj = ", pair[1], "aj/ai = ", pair[1]/pair[0])
 
 def merge_find(arr, maxDiff):
     
@@ -43,8 +43,8 @@ def merge(left, right, maxDiff):
     
 
 lst = [51,14,66,1,2,9,0,11]
-print(largest_fraction(lst))
+largest_fraction(lst)
 
 randArr = [random.randint(4, 700) for i in range(10)]
 print("RANDARR : ", randArr)
-print(largest_fraction(randArr))
+largest_fraction(randArr)
