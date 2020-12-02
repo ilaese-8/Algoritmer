@@ -1,8 +1,26 @@
 import random
+import sys
 
+def smallest3(arr):
+
+    min1 = sys.maxsize
+    min2 = sys.maxsize
+    min3 = sys.maxsize
+
+    for i in arr:
+        if i < min1:
+            min3 = min2
+            min2 = min1
+            min1 = i
+        elif i < min2:
+            min3 = min2
+            min2 = i
+        elif i < min3:
+            min3 = i
+    return [min1, min2, min3]
 
 def select(arr):
-    
+
     chunks = [arr[i : i+5] for i in range(0, len(arr), 5)]
     sorted_chunks = [sorted(chunk) for chunk in chunks]
     medians = [chunk[len(chunk) // 2] for chunk in sorted_chunks]
@@ -44,6 +62,7 @@ for i in range(0, 10):
     randArr.append(random.randint(4, 700))                 
 print("RANDARR : ", randArr)
 print(select(randArr))
+print(smallest3(randArr))
 
 #arr = [9, 3, 177, 88, 4, 7, 25]
 #print(select(arr))
