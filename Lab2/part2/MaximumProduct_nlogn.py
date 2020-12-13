@@ -25,9 +25,6 @@ def split(arr, sub):
 
 def maxSub(L, R, sub):
 
-    print(L)
-    print(R)
-    
     i = j = 1
 
     lProd = L[0]
@@ -46,30 +43,53 @@ def maxSub(L, R, sub):
         maxProd *= element
 
     if lProd*rProd > maxProd:
-        
         del sub[:]
         for i in L:
             sub.append(i)
         for j in R:
             sub.append(j)
-            
+        return sub
 
-    if lProd > rProd and lProd > maxProd and lProd*rProd < maxProd:
+
+    elif lProd*R[0] > maxProd:
         del sub[:]
         for i in L:
             sub.append(i)
+        sub.append(R[0])
+        return sub
 
-    if rProd > lProd and rProd > maxProd and lProd*rProd < maxProd:
+
+    elif rProd*L[len(L)-1] > maxProd:
         del sub[:]
+        sub.append(L[len(L)-1])
         for i in R:
             sub.append(i)
+        return sub
+            
+
+    if lProd >= rProd and lProd >= maxProd and lProd*rProd <= maxProd:
+        del sub[:]
+        for i in L:
+            sub.append(i)
+        if R[0] > 0:
+            sub.append(R[0])
+
+    if rProd >= lProd and rProd >= maxProd and lProd*rProd <= maxProd:
+        del sub[:]
+        if L[len(L)-1] > 0:
+            sub.append(L[len(L)-1])
+        for i in R:
+            sub.append(i)
+        
 
     return sub
     
 
-lst = [-2, 3, -2, -40]
-maxProduct(lst)
-
-randArr = [random.randint(-50, 50) for i in range(8)]
-print("RANDARR : ", randArr)
-maxProduct(randArr)
+lst1 = [6, -3, -10, 0]
+lst2 = [-2, -3, 0, -2, -40]
+lst3 = [-1, -3, -10, 0, 60]
+lst4 = [-1, -2, -3, 4]
+maxProduct(lst1)
+maxProduct(lst2)
+maxProduct(lst3)
+maxProduct(lst4)
