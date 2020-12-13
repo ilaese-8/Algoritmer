@@ -1,95 +1,86 @@
+import sys
 import random
 
-def maxProduct(arr):
+def maxCross(arr, left, middle, right): 
+
+    leftProd = rightProd = 1
     
-    if len(arr) == 1:
-        print(arr)
-        return
+    minSuffix = minPrefix = sys.maxsize
+
+    maxPrefix = maxSuffix = -sys.maxsize
     
-    sub = split(arr, [arr[0]])
-    print(sub)
-
-def split(arr, sub):
+    minSuffixIndex = maxSuffixIndex = middle
     
-    if len(arr) > 1:
-
-        middle = len(arr)//2
-        L = arr[:middle]
-        R = arr[middle:]
-
-        split(L, sub)
-        split(R, sub)
-
-        return maxSub(L, R, sub)
-
-
-def maxSub(L, R, sub):
-
-    i = j = 1
-
-    lProd = L[0]
-    rProd = R[0]
+    minPrefixIndex = maxPrefixIndex = middle + 1
     
-    while i < len(L):
-        lProd *= L[i]
-        i += 1
-
-    while j < len(R):
-        rProd *= R[j]
-        j += 1
+    for i in range(middle, left-1, -1):
         
-    maxProd = 1
-    for element in sub:
-        maxProd *= element
-
-    if lProd*rProd > maxProd:
-        del sub[:]
-        for i in L:
-            sub.append(i)
-        for j in R:
-            sub.append(j)
-        return sub
-
-
-    elif lProd*R[0] > maxProd:
-        del sub[:]
-        for i in L:
-            sub.append(i)
-        sub.append(R[0])
-        return sub
-
-
-    elif rProd*L[len(L)-1] > maxProd:
-        del sub[:]
-        sub.append(L[len(L)-1])
-        for i in R:
-            sub.append(i)
-        return sub
+        leftProd *= arr[i]
+        
+        if leftProd < minSuffix:
+            minSuffix = leftProd
+            minSuffixIndex = i
             
-
-    if lProd >= rProd and lProd >= maxProd and lProd*rProd <= maxProd:
-        del sub[:]
-        for i in L:
-            sub.append(i)
-        if R[0] > 0:
-            sub.append(R[0])
-
-    if rProd >= lProd and rProd >= maxProd and lProd*rProd <= maxProd:
-        del sub[:]
-        if L[len(L)-1] > 0:
-            sub.append(L[len(L)-1])
-        for i in R:
-            sub.append(i)
-        
-
-    return sub
+        if leftProd > maxSuffix:
+            maxSuffix = leftProd
+            maxSuffixIndex = i
     
+    for i in range(middle + 1, right + 1):
+        rightProd *= arr[i]
 
-lst1 = [6, -3, -10, 0]
-lst2 = [-2, -3, 0, -2, -40]
-lst3 = [-1, -3, -10, 0, 60]
-lst4 = [-1, -2, -3, 4]
-maxProduct(lst1)
-maxProduct(lst2)
-maxProduct(lst3)
-maxProduct(lst4)
+        if rightProd < minPrefix:
+            minPrefix = rightProd
+            minPrefixIndex = i
+
+        if rightProd > maxPrefix:
+            maxPrefix = rightProd
+            maxPrefixIndex = i
+
+    
+    minToMin = 1
+    for i in range(middle + 1, minPrefixIndex + 1):
+        minToMin *= arr[i]
+        
+    for i in range(middle, minSuffixIndex-1, -1):
+        minToMin *= arr[i]
+
+    maxToMax = 1
+    for i in range(middle + 1, maxPrefixIndex + 1):
+        maxToMax *= arr[i]
+        
+    for i in range(middle, maxSuffixIndex-1, -1):
+        maxToMax *= arr[i]
+
+    maxCrossProd = max(minToMin, maxToMax)          
+
+    fullProd = leftProd * rightProd
+
+    return max(maxCrossProd, fullProd, leftProd, rightProd)
+  
+
+def maxProduct(arr, left, right): 
+      
+    if left == right: 
+        return arr[left] 
+
+    middle = (left + right) // 2
+
+    leftMax = maxProduct(arr, left, middle)
+    rightMax = maxProduct(arr, middle+1, right)
+    crossMax = maxCross(arr, left, middle, right)
+
+    return max(leftMax, rightMax, crossMax)
+
+
+arr1 = [-2, 3, -2, -40]
+print(maxProduct(arr1, 0, len(arr1)-1))
+
+arr2 = [-1, -2, -3, 4]
+print(maxProduct(arr2, 0, len(arr2)-1))
+
+arr3 = [-1, -3, -10, 0, 60]
+print(maxProduct(arr3, 0, len(arr3)-1))
+
+arr4 = [random.randint(-20,20) for i in range(4)]
+print("RANDOM ARRAY: ", arr4)
+print(maxProduct(arr4, 0, len(arr4)-1))
