@@ -9,53 +9,22 @@ def maxCross(arr, left, middle, right):
 
     maxPrefix = maxSuffix = -sys.maxsize
     
-    minSuffixIndex = maxSuffixIndex = middle
-    
-    minPrefixIndex = maxPrefixIndex = middle + 1
-    
     for i in range(middle, left-1, -1):
-        
         leftProd *= arr[i]
-        
-        if leftProd < minSuffix:
-            minSuffix = leftProd
-            minSuffixIndex = i
-            
-        if leftProd > maxSuffix:
-            maxSuffix = leftProd
-            maxSuffixIndex = i
+        minSuffix = min(leftProd, minSuffix)
+        maxSuffix = max(leftProd, maxSuffix)
     
     for i in range(middle + 1, right + 1):
         rightProd *= arr[i]
+        minPrefix = min(rightProd, minPrefix)
+        maxPrefix = max(rightProd, maxPrefix)
 
-        if rightProd < minPrefix:
-            minPrefix = rightProd
-            minPrefixIndex = i
-
-        if rightProd > maxPrefix:
-            maxPrefix = rightProd
-            maxPrefixIndex = i
-
-    
-    minToMin = 1
-    for i in range(middle + 1, minPrefixIndex + 1):
-        minToMin *= arr[i]
+    minToMin = minSuffix*minPrefix
+    maxToMax = maxSuffix*maxPrefix
         
-    for i in range(middle, minSuffixIndex-1, -1):
-        minToMin *= arr[i]
-
-    maxToMax = 1
-    for i in range(middle + 1, maxPrefixIndex + 1):
-        maxToMax *= arr[i]
-        
-    for i in range(middle, maxSuffixIndex-1, -1):
-        maxToMax *= arr[i]
-
     maxCrossProd = max(minToMin, maxToMax)          
 
-    fullProd = leftProd * rightProd
-
-    return max(maxCrossProd, fullProd, leftProd, rightProd)
+    return max(maxCrossProd, leftProd, rightProd)
   
 
 def maxProduct(arr, left, right): 
@@ -72,7 +41,7 @@ def maxProduct(arr, left, right):
     return max(leftMax, rightMax, crossMax)
 
 
-arr1 = [-2, 3, -2, -40]
+arr1 = [-2, 3, -0.1, -40]
 print(maxProduct(arr1, 0, len(arr1)-1))
 
 arr2 = [-1, -2, -3, 4]
